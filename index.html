@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="amivcore.js" type="text/Javascript"></script>
+
+<meta charset="utf-8">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+
+</head>
+
+<body>
+    <div class="container">
+      <div class="page-header">
+        <h1>AMIV Jobbörse</h1>
+        <p class="lead">Job and Internship postings for MAVT and ITET students</p>
+      </div>
+
+      <div class="row">
+        <div id="offerList" class="col-md-12">
+      </div>
+      </div>
+</!-- >
+      <div class="row">
+        <div class="col-md-2">
+          <img src="logos/ABB.jpg" alt="ABB" style="height:50px">
+        </div>
+        <div class="col-md-10"><b>ABB Traumpraktikum bla bla bla bla wir sind geil</b></div>
+      </div>
+      </!-- >
+
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-12">
+          <p><b>Company Login</b></p>
+        </div>
+      </div>
+
+
+</!-- >
+<form class="form-inline">
+ <div class="form-group">
+
+   <label for="email">Email address:</label>
+   <input type="email" class="form-control" id="email" name="username">
+ </div>
+ <div class="form-group">
+   <label for="pwd">Password:</label>
+   <input type="password" class="form-control" id="pwd" name="password">
+ </div>
+ <div class="checkbox">
+   <label><input type="checkbox"> Remember me</label>
+ </div>
+ <button type="submit" class="btn btn-default">Submit</button>
+
+</form>
+</!-- >
+  <p>Don't have a login? Request one here</p>
+
+
+<script type="text/JavaScript">
+       /*get Data of events from API*/
+       amivcore.on('ready', function() {    // wait for it to be ready
+     amivcore.joboffers.GET({}, function(ret) {
+       console.log(ret);
+       for (i = 0; i < ret["_items"].length; i++) {
+         $("#offerList").append("<p class='col-md-6'>"+(ret["_items"][i]["title_de"])+"</p>");
+       }
+
+     }
+   );});
+   </script>
+
+</body>

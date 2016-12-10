@@ -277,6 +277,11 @@
             return core.lib.authenticated;
         }
 
+
+        lib.api_url = function() {
+          return core.lib.api_url;
+        }
+
         /**
 	 *  Login function
 	 *  @constructor

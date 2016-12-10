@@ -19,7 +19,7 @@ def authenticate():
         if valid_login(request.form['username'],
                        request.form['password']):
 #            return log_the_user_in(request.form['username'])
-            return "Hello World"
+            return render_template('submitJobForm.html')
         else:
             error = 'Invalid username/password'
             return error 

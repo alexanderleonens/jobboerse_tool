@@ -28,17 +28,17 @@
       </div>
 
       <div class="row">
-        <div id="offerList" class="col-md-12">
+        <div id="offerList" class="col-md-4"></div>
+        <div id="logoList" class="col-md-4"></div>
+        <div class="col-md-4">hardcoded example</div>
+        <div class="col-md-4">hardcoded example</div>
       </div>
-      </div>
-</!-- >
+
       <div class="row">
-        <div class="col-md-2">
-          <img src="logos/ABB.jpg" alt="ABB" style="height:50px">
-        </div>
-        <div class="col-md-10"><b>ABB Traumpraktikum bla bla bla bla wir sind geil</b></div>
+        <div class="col-sm-4">.col-sm-4</div>
+        <div class="col-sm-8">.col-sm-8</div>
       </div>
-      </!-- >
+
 
       <br>
       <br>
@@ -68,19 +68,23 @@
 </form>
 </!-- >
   <p>Don't have a login? Request one here</p>
-
+<a href="Form.html">FORM</a>
 
 <script type="text/JavaScript">
        /*get Data of events from API*/
-       amivcore.on('ready', function() {    // wait for it to be ready
+    amivcore.on('ready', function() {    // wait for it to be ready
      amivcore.joboffers.GET({}, function(ret) {
        console.log(ret);
        for (i = 0; i < ret["_items"].length; i++) {
          $("#offerList").append("<p class='col-md-6'>"+(ret["_items"][i]["title_de"])+"</p>");
+         var logo_url = ret["_items"][i]["logo"];
+         if(logo_url != undefined){
+           $("#logoList").append("<img src='" + amivcore.api_url() + logo_url["file"] + "' class='col-md-6'>");
+         }
        }
 
-     }
-   );});
+      });
+    });
    </script>
 
 </body>

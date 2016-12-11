@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	return render_template('index_John.html')
+	return render_template('index.html')
 
 def valid_company_login(username,password):
 	if(username=="a" and password=="b"):

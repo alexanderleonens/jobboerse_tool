@@ -24,11 +24,11 @@
 
 <body>
 
-    <div class="container-fluid">
-      <div class="page-header">
+    <div class="container-fluid jobOffersPage">
+      <div class="page-header" id="jobOffersHeader">
         <h1>AMIV Jobbörse</h1>
         <p class="lead">Job and Internship postings for MAVT and ITET students</p>
-        <div id="loginButton" data-toggle="modal" data-target="#loginModal">Login</div>
+        <div id="loginButton" data-toggle="modal" data-target="#loginModal">Company Login</div>
       </div>
 
 
@@ -87,7 +87,7 @@
          /* show_website flag: only admins set it to TRUE if Job Posting OK is. It is set as FALSE when sent through Form, and is set to FALS when date expires */
          /* var show_website = ret["_items"][i]["show_website"]; */
          var show_website = true;  /*delete this once the API offers show_website for Jobboerse */
-         $("#logoList").append("<div class='row'>");
+         $("#logoList").append("<div class='singleJobOffer row'>");
 
          if(((logo_url != undefined) || (pdf_url != undefined))  && (show_website == true)){
            $("#logoList").append("<div class='col-xs-2 top-buffer'>" + "<img src='" + amivcore.api_url() + logo_url["file"] + "' height = '50'> </div>");

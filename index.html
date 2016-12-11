@@ -16,27 +16,26 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" type="text/css" href="mystyle.css">
+<link rel="stylesheet" type="text/css" href="style_test.css">
 
 </head>
 
+
+
 <body>
-    <div class="container">
+
+    <div class="container-fluid">
       <div class="page-header">
         <h1>AMIV Jobbörse</h1>
         <p class="lead">Job and Internship postings for MAVT and ITET students</p>
       </div>
 
-      <div class="row">
-        <div id="offerList" class="col-md-4"></div>
-        <div id="logoList" class="col-md-4"></div>
-        <div class="col-md-4">hardcoded example</div>
-        <div class="col-md-4">hardcoded example</div>
+
+      <div class="row" id="logoList" >
       </div>
 
       <div class="row">
-        <div class="col-sm-4">.col-sm-4</div>
-        <div class="col-sm-8">.col-sm-8</div>
+        <div id="offerList" class="col-md-6"></div>
       </div>
 
 
@@ -76,11 +75,15 @@
      amivcore.joboffers.GET({}, function(ret) {
        console.log(ret);
        for (i = 0; i < ret["_items"].length; i++) {
-         $("#offerList").append("<p class='col-md-6'>"+(ret["_items"][i]["title_de"])+"</p>");
+         var title = ret["_items"][i]["title_de"]
          var logo_url = ret["_items"][i]["logo"];
+         $("#logoList").append("<div class='row'>")
          if(logo_url != undefined){
-           $("#logoList").append("<img src='" + amivcore.api_url() + logo_url["file"] + "' class='col-md-6'>");
+           $("#logoList").append("<div class='col-xs-2 top-buffer'>" + "<img src='" + amivcore.api_url() + logo_url["file"] + "' height = '50'> </div>");
+         }else {
+           $("#logoList").append("<div class='col-xs-2'></div>");
          }
+         $("#logoList").append("<div class='col-xs-10 top-buffer'>"+"<h3>"+title+"</h3>"+"</div></div>");
        }
 
       });

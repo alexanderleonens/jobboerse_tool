@@ -19,12 +19,14 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
+
+
 <body>
 <div class="container-fluid">
 
 </div>
  <div class="container-fluid" style="background-color:lightcyan;">
- 
+
     <div class="col-sm-3"  style="background-color:lavenderblush;">.col-xs-6</div>
     <div class="col-sm-6" style="background-color:lavender;">
 
@@ -32,28 +34,28 @@
 		  	 <h2 class="form-signin-heading">Post the job</h2>
 		  </div>
 		  <br>
-		  
+
 
  <form class="form-inline">
- 
+
 	 <div class="form-group">
 	   <label for="text">Company Name:</label>
 	   <input type="text" class="form-control" id="companyName" name="companyName">
 	 </div>
- 
- 
- 
+
+
+
 	 <div class="form-group">
 	   <label for="text">Title:</label>
 	   <input type="text" class="form-control" id="titleForm" name="titleForm">
 	 </div>
-	 
-	 
+
+
 	 <div class="form-group">
 	   <label for="date">Publish Until:</label>
 	   <input type="date" class="form-control" id="publishUntil" name="publishUntil">
 	 </div>
-	 
+
 	 	 <div class="form-group">
 	   <label for="date"> Logo load:</label>
 	   <input type="file" class="form-control"  accept="image/*" id="logoLoad" name="logoLoad" multiple>
@@ -74,38 +76,38 @@
 	</div>
 	<div class="col-sm-3"  style="background-color:lavenderblush;">  </div>
   </div>
-  
-  
+
+
 <!--   function verifyorder() {
    var order = document.getElementById('value').value;
-  
+
   } -->
-  
-  
+
+
 <script type="text/JavaScript">
 
 amivcore.on('ready', function() {    // wait for it to be ready
 	amivcore.login('gygi','gygi');
-});	 
-		 
+});
+
  function sendCompanyForm(){
- 
-		
+
+
 	var companyName = document.getElementById("companyName").value;
     var title = document.getElementById("titleForm").value;
 	var date = document.getElementById("publishUntil").value;
-	
-	
+
+
 	if (0 != companyName.length && 0 != title.length && 0 != date.length){
-			
+
 		amivcore.joboffers.POST({data:{"company":companyName,"title_de":title}, }, function(ret) {console.log(ret)});
 
-	 	var imgElem = document.getElementById('logoLoad'); 
+	 	var imgElem = document.getElementById('logoLoad');
 		console.log(imgElem);
 	<!--	var imgData = JSON.stringify(getBase64Image(imgElem));-->
 	<!--	amivcore.joboffers.POST({data:{"company":companyName,"title_de":title,"logo":imgData}, }, function(ret) {console.log(ret)});-->
-		
-		
+
+
 	}
 	else
 	{	alert("Please fill all data");}
@@ -142,10 +144,10 @@ amivcore.on('ready', function() {    // wait for it to be ready
 
   document.getElementById('logoLoad').addEventListener('change', handleFileSelect, false);
 </script>
-  
-  
-  
- 
-  
+
+
+
+
+
 </body>
 </html>

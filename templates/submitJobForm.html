@@ -18,64 +18,52 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/main.css">
+
+
   </head>
 
 
 <body>
-<div class="container-fluid">
-
-</div>
- <div class="container-fluid" style="background-color:lightcyan;">
-
-    <div class="col-sm-3"  style="background-color:lavenderblush;">.col-xs-6</div>
-    <div class="col-sm-6" style="background-color:lavender;">
-
-	      <div class="col-md-4">
-		  	 <h2 class="form-signin-heading">Post the job</h2>
-		  </div>
-		  <br>
-
-
- <form class="form-inline">
-
-	 <div class="form-group">
-	   <label for="text">Company Name:</label>
-	   <input type="text" class="form-control" id="companyName" name="companyName">
-	 </div>
-
-
-
-	 <div class="form-group">
-	   <label for="text">Title:</label>
-	   <input type="text" class="form-control" id="titleForm" name="titleForm">
-	 </div>
-
-
-	 <div class="form-group">
-	   <label for="date">Publish Until:</label>
-	   <input type="date" class="form-control" id="publishUntil" name="publishUntil">
-	 </div>
-
-	 	 <div class="form-group">
-	   <label for="date"> Logo load:</label>
-	   <input type="file" class="form-control"  accept="image/*" id="logoLoad" name="logoLoad" multiple>
-	   <output id="list"></output>
-	 </div>
-
- 	 <div class="form-group">
-	   <label for="date"> Pdf upload:</label>
-	   <input type="file" class="form-control" id="pdfLoad" name="pdfLoad" accept=".pdf">
-	 </div>
-
-
-	 <button type="button" class="btn btn-default" id="button" onclick="sendCompanyForm()">Submit</button>
-
-</form>
-
-
-	</div>
-	<div class="col-sm-3"  style="background-color:lavenderblush;">  </div>
+  <div class="page-header" id="jobOffersHeader">
+    <h1>Job posting form</h1>
+    <p class="lead">Post here job and internship offerings for ETH MAVT and ITET students</p>
   </div>
+   <form action="login" method="POST">
+     <div class="form-group submitJobForm">
+  	   <label for="text">Company Name:</label>
+  	   <input type="text" class="form-control" id="companyName" name="companyName">
+  	 </div>
+
+
+
+  	 <div class="form-group submitJobForm">
+  	   <label for="text">Title:</label>
+  	   <input type="text" class="form-control" id="titleForm" name="titleForm">
+  	 </div>
+
+
+  	 <div class="form-group submitJobForm">
+  	   <label for="date">Publish Until:</label>
+  	   <input type="date" class="form-control" id="publishUntil" name="publishUntil">
+  	 </div>
+
+  	 	 <div class="form-group submitJobForm">
+  	   <label for="date"> Logo load:</label>
+  	   <input type="file" class="form-control"  accept="image/*" id="logoLoad" name="logoLoad" multiple>
+  	   <output id="list"></output>
+  	 </div>
+
+   	 <div class="form-group submitJobForm">
+  	   <label for="date"> Pdf upload:</label>
+  	   <input type="file" class="form-control" id="pdfLoad" name="pdfLoad" accept=".pdf">
+  	 </div>
+
+
+  	 <button type="button" class="btn btn-default" id="submitButton" onclick="sendCompanyForm()">Submit</button>
+
+  </form>
 
 
 <!--   function verifyorder() {

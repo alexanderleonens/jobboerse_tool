@@ -295,7 +295,7 @@
                 path: '/sessions/',
                 method: 'POST',
                 data: JSON.stringify({
-                    user: curUser.toLowerCase(),
+                    username: curUser.toLowerCase(),
                     password: curPass
                 }),
                 headers: {
@@ -308,6 +308,7 @@
                 }
                 if (msg['_status'] == 'OK') {
                     set('cur_token_id', msg['id'], 1);
+					
                     set('cur_token', msg['token'], 1);
                     set('cur_user_id', parseInt(msg['user_id']), 1);
                     callback(true);

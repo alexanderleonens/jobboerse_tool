@@ -1,21 +1,85 @@
 <!DOCTYPE html>
-<html>
-  <head>
-      <!-- General Setting -->   
-      <meta charset='utf-8'>
-      <meta name='viewport' content='width=device-width, initial-scale=1'>
-      <!-- Include Stylesheets -->
-      <link rel='stylesheet' type='text/css' href='main.css'>
-      <!-- Include Bootstrap and jQuery -->
-    <link rel='stylesheet' type='text/css' href='bootstrap/css/bootstrap.min.css'>
-      <script src='bootstrap/js/bootstrap.min.js'></script>
 
-  </head>
-  <body>
-    <form action="login" method="POST">
-      <input type="text" name="username" id="username" placeholder="Username">
-      <input type="text" name="password" id="password" placeholder="Password">
-      <input type="submit" name="authentication" value="Login">
-    </form>
-  </body>
-</html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="amivcore.js" type="text/Javascript"></script>
+
+<meta charset="utf-8">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" type="text/css" href="style_test.css">
+
+</head>
+
+
+
+<body>
+
+    <div class="container-fluid">
+      <div class="page-header">
+        <h1>AMIV Jobbörse</h1>
+        <p class="lead">Job and Internship postings for MAVT and ITET students</p>
+      </div>
+
+
+      <div class="row" id="logoList" >
+      </div>
+
+      <div class="row">
+        <div id="offerList" class="col-md-6"></div>
+      </div>
+
+<br>
+<br>
+
+<form action="login" method="POST">
+  <input type="text" name="username" id="username" placeholder="Username">
+  <input type="text" name="password" id="password" placeholder="Password">
+  <input type="submit" name="authentication" value="Login">
+</form>
+
+
+<button type="submit" class="btn btn-default"><a href="Form.html">FORM</a></button>
+
+<script type="text/JavaScript">
+       /*get Data of events from API*/
+    amivcore.on('ready', function() {    // wait for it to be ready
+     amivcore.joboffers.GET({}, function(ret) {
+       console.log(ret);
+       /*var jobPost = ret["_items"];*/
+       for (i = 15; i < ret["_items"].length; i++) {
+         var title = ret["_items"][i]["title_de"];
+         var logo_url = ret["_items"][i]["logo"];
+         var pdf_url = ret["_items"][i]["pdf"];
+         /* show_website flag: only admins set it to TRUE if Job Posting OK is. It is set as FALSE when sent through Form, and is set to FALS when date expires */
+         /* var show_website = ret["_items"][i]["show_website"]; */
+         var show_website = true;  /*delete this once the API offers show_website for Jobboerse */
+         $("#logoList").append("<div class='row'>");
+
+         if(((logo_url != undefined) || (pdf_url != undefined))  && (show_website == true)){
+           $("#logoList").append("<div class='col-xs-2 top-buffer'>" + "<img src='" + amivcore.api_url() + logo_url["file"] + "' height = '50'> </div>");
+           $("#logoList").append("<div class='col-xs-10 top-buffer'>"+"<h3>" + "<a href = '" + amivcore.api_url() +pdf_url["file"] + "'>" +title+"</h3>" + "</a>" +"</div></div>");
+
+         }else {
+           /*$("#logoList").append("<div class='col-xs-2'></div>");*/
+           /*$("#logoList").append("<div class='col-xs-10 top-buffer'>"+"<h3>" + title+"</h3>" +"</div>");*/
+         }
+         /* here the pdf link*/
+       }
+
+      });
+    });
+   </script>
+
+
+
+</body>

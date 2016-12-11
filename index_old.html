@@ -41,11 +41,8 @@
 <br>
 <br>
 
-<form action="login" method="POST">
-  <input type="text" name="username" id="username" placeholder="Username">
-  <input type="text" name="password" id="password" placeholder="Password">
-  <input type="submit" name="authentication" value="Login">
-</form>
+
+
 
 
 <button type="submit" class="btn btn-default"><a href="Form.html">FORM</a></button>
@@ -55,25 +52,18 @@
     amivcore.on('ready', function() {    // wait for it to be ready
      amivcore.joboffers.GET({}, function(ret) {
        console.log(ret);
-       /*var jobPost = ret["_items"];*/
-       for (i = 15; i < ret["_items"].length; i++) {
+       for (i = 8; i < ret["_items"].length; i++) {
          var title = ret["_items"][i]["title_de"];
          var logo_url = ret["_items"][i]["logo"];
-         var pdf_url = ret["_items"][i]["pdf"];
-         /* show_website flag: only admins set it to TRUE if Job Posting OK is. It is set as FALSE when sent through Form, and is set to FALS when date expires */
-         /* var show_website = ret["_items"][i]["show_website"]; */
-         var show_website = true;  /*delete this once the API offers show_website for Jobboerse */
+         var pdf_url = ret["_items"][i]["pdf"]["file"];
          $("#logoList").append("<div class='row'>");
 
-         if(((logo_url != undefined) || (pdf_url != undefined))  && (show_website == true)){
+         if(logo_url != undefined){
            $("#logoList").append("<div class='col-xs-2 top-buffer'>" + "<img src='" + amivcore.api_url() + logo_url["file"] + "' height = '50'> </div>");
-           $("#logoList").append("<div class='col-xs-10 top-buffer'>"+"<h3>" + "<a href = '" + amivcore.api_url() +pdf_url["file"] + "'>" +title+"</h3>" + "</a>" +"</div></div>");
-
          }else {
-           /*$("#logoList").append("<div class='col-xs-2'></div>");*/
-           /*$("#logoList").append("<div class='col-xs-10 top-buffer'>"+"<h3>" + title+"</h3>" +"</div>");*/
+           $("#logoList").append("<div class='col-xs-2'></div>");
          }
-         /* here the pdf link*/
+         $("#logoList").append("<div class='col-xs-10 top-buffer'>"+"<h3>" + "<a href = '" + amivcore.api_url() +pdf_url + "'>" +title+"</h3>" + "</a>" +"</div></div>");
        }
 
       });
